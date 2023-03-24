@@ -1,4 +1,4 @@
-### Hi there 👋,IN this website we focussed mainly on menta health of people and taking that as concern we created few simple solutions that can rebuilt your inner peace,like podcasts,soothing music,meditation timer and techniques,food that we have to take and some motivational stories
+### Hello there👋, in this website, we primarily focus on people's mental health, and with that in mind, we've developed a few simple solutions that can help you rediscover your inner calm, like podcasts, calming music, meditation timers and techniques, food that we need to eat, and some inspirational stories.
 
 
 <!--
