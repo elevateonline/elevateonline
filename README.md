@@ -1,4 +1,5 @@
-### Hi there 👋
+### Hi there 👋,IN this website we focussed mainly on menta health of people and taking that as concern we created few simple solutions that can rebuilt your inner peace,like podcasts,soothing music,meditation timer and techniques,food that we have to take and some motivational stories
+
 
 <!--
 **elevateonline/elevateonline** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
