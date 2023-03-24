@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Elivate</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- NAVBAR CREATION -->
+   <header class="header">
+   </header>
+    <!-- LOGIN FORM CREATION -->
+    <div class="background"></div>
+    <div class="container">
+        <div class="item">
+            <h1>Elevate</h1>
+            <div class="text-item">
+                <h2>Welcome! <br><span>
+                    To Our Website!
+                </span></h2>
+                <p>Experience the power of Relaxation and Feel the power of Peace</p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://twitter.com/elevate_vibes"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://instagram.com/the_elevated_vibes?igshid=ZDdkNTZiNTM="><i class='bx bxl-instagram'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="login-section">
+            <div class="form-box login">
+                <form action="">
+                    <h2>Sign In</h2>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email" name="email" required id="email">
+                        <label >Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                        <input type="password" name="password" required id="password">
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-password">
+                        <label for=""><input type="checkbox">Remember Me</label>
+                        <a href="#">Forget Password</a>
+                    </div>
+                    <button type="submit" onclick="location.href='C:/Users/priya/OneDrive/Desktop/web development/Elivate/home/index.html'" id="loginBtn" class="btn">Login</button>
+                    <div class="create-account">
+                        <p>Create A New Account? <a href="#" class="register-link">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <form action="">
+
+                    <h2>Sign Up</h2>
+
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-user'></i></span>
+                        <input type="text" name="username" required id="username">
+                        <label >Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email" name="email" required id="emailR">
+                        <label >Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                        <input type="password" name="password" required id="passwordR">
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-password">
+                        <label for=""><input type="checkbox">I agree with this statment</label>
+                    </div>
+                    <button  type="submit" id="registerBtn" class="btn">Register</button>
+                    <div class="create-account">
+                        <p>Already Have An Account? <a href="#" class="login-link">Sign In</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<!-- SIGN UP FORM CREATION -->
+<script type="module">
+// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, doc, set } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+const firebaseConfig = {
+  // your Firebase config here
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
+
+const loginBtn = document.querySelector('.login-section .login .btn');
+const registerBtn = document.querySelector('.login-section .register .btn');
+
+registerBtn.addEventListener('click',(e)=>{
+  var email = document.getElementById('emailR').value;
+  var password = document.getElementById('passwordR').value;
+  var username = document.getElementById('username').value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const userRef = doc(collection(db, "users"), user.uid);
+
+      set(userRef, {
+        username: username,
+        email: email
+      }).then(() => {
+        console.log('User data saved to database');
+        document.getElementById('success-message').innerHTML = "User data saved successfully!";
+      }).catch((error) => {
+        console.log('Error saving user data:', error);
+      });
+
+      alert('user created!');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      alert(errorMessage);
+      alert(email)
+      alert(password)
+    });
+
+});
+
+loginBtn.addEventListener('click',(e)=>{
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      const loginRef = doc(collection(db, "logins"), user.uid);
+
+      set(loginRef, {
+        timestamp: new Date()
+      }).then(() => {
+        console.log('Login data saved to database');
+        alert('User logged in!');
+      }).catch((error) => {
+        console.log('Error saving login data:', error);
+      });
+
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+const user = auth.currentUser;
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  const uid = user.uid;
+  //bla bla bla
+  // ...
+} else {
+  // User is signed out
+}
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    //bla bla bla
+    // ...
+  } else {
+    // User is signed out
+  }
+});
+
+
+</script>
+<script src="index.js"></script>
+</html>
