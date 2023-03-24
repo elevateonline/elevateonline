@@ -49,10 +49,11 @@ html{
   width:3rem;
 }
 .round-image {
-  border-radius: 50%;
+  border-radius: 5%;
   width: 170px;
   height: 170px;
-  margin-bottom: 10px; /* decrease the margin value */
+  filter: drop-shadow(2px 4px 6px black);
+  margin-bottom: 10px;
 }
 
 
