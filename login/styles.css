@@ -122,7 +122,6 @@ body{
 }
 
 
-
 .login-section .form-box h2{
     text-align: center;
     font-size: 25px;
@@ -212,4 +211,10 @@ body{
 }
 .create-account p a:hover{
     text-decoration: underline;
+}
+
+#login{
+    width: 100px;
+    border-radius: 5px;
+    padding: 10px
 }
