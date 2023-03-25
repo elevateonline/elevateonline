@@ -1,4 +1,5 @@
-### Hi there 👋
+### Hello there👋, in this website, we primarily focus on people's mental health, and with that in mind, we've developed a few simple solutions that can help you rediscover your inner calm, like podcasts, calming music, meditation timers and techniques, food that we need to eat, and some inspirational stories.
+
 
 <!--
 **elevateonline/elevateonline** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
