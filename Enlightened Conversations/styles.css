@@ -63,9 +63,7 @@
   box-sizing: border-box;
 }
 
-h1:hover {
-  color: purple;
-}
+
 h1 {
   
   background-color: rgb(239, 239, 139);
